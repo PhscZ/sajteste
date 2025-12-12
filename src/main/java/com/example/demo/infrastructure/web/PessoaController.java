@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.demo.application.commands.RegisterPessoaCommand;
+import com.example.demo.application.commands.UpdatePessoaCommand;
 import com.example.demo.application.commands.handlers.RegisterPessoaHandler;
+import com.example.demo.application.commands.handlers.UpdatePessoaHandler;
 import com.example.demo.application.commands.queries.handlers.FindAllPessoasHandler;
 import com.example.demo.application.commands.queries.handlers.FindPessoaByIdHandler;
 import com.example.demo.application.dtos.PessoaDto;
@@ -29,6 +31,7 @@ public class PessoaController {
     private final RegisterPessoaHandler registerPessoaHandler;
     private final FindPessoaByIdHandler findPessoaByIdHandler;
     private final FindAllPessoasHandler findAllPessoasHandler;
+    private final UpdatePessoaHandler updatePessoaHandler;
 
     @PostMapping
     public ResponseEntity<PessoaDto> register(@RequestBody RegisterPessoaCommand command, UriComponentsBuilder uriBuilder){
@@ -46,6 +49,13 @@ public class PessoaController {
     @GetMapping
     public ResponseEntity<List<PessoaDto>> findAll() {
         return ResponseEntity.ok(findAllPessoasHandler.handle());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PessoaDto> update(
+            @PathVariable UUID id, @RequestBody UpdatePessoaCommand command) {
+        PessoaDto updatedPessoa = updatePessoaHandler.handle(id, command);
+        return ResponseEntity.ok(updatedPessoa);
     }
     
 }
