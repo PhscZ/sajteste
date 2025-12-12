@@ -8,12 +8,12 @@ import com.example.demo.infrastructure.persistence.entities.PessoaEntity;
 @Component
 public class PessoaMapper {
     public PessoaEntity toEntity(Pessoa pessoa){
-        PessoaEntity entity = new PessoaEntity(pessoa.getId(), pessoa.getNome(), pessoa.getIdade());
+        PessoaEntity entity = new PessoaEntity(pessoa.getId(), pessoa.getNome(), pessoa.getIdade(), pessoa.getEmail());
         return entity;
     }
 
     public Pessoa toDomain(PessoaEntity entity){
-        Pessoa pessoa = new Pessoa(entity.getId(), entity.getNome(), entity.getIdade());
+        Pessoa pessoa = new Pessoa(entity.getId(), entity.getNome(), entity.getIdade(), entity.getEmail());
         return pessoa;
     }
 }

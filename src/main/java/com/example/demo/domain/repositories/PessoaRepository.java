@@ -1,5 +1,6 @@
 package com.example.demo.domain.repositories;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -9,4 +10,5 @@ public interface PessoaRepository {
     Optional<Pessoa> findById(UUID id);
     void save(Pessoa pessoa);
     void deleteById(UUID id);
+    List<Pessoa> findAll();
 }

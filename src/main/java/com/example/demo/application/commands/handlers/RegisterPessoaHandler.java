@@ -19,8 +19,8 @@ public class RegisterPessoaHandler {
 
     @Transactional
     public PessoaDto handle(RegisterPessoaCommand command) {
-        Pessoa pessoa = new Pessoa(command.nome(), command.idade());
+        Pessoa pessoa = new Pessoa(command.nome(), command.idade(), command.email());
         pessoaRepository.save(pessoa);
-        return new PessoaDto(pessoa.getId(), pessoa.getNome(), pessoa.getIdade());
+        return new PessoaDto(pessoa.getId(), pessoa.getNome(), pessoa.getIdade(), pessoa.getEmail());
     }
 }

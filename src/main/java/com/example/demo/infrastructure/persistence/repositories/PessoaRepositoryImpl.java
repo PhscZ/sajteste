@@ -1,7 +1,9 @@
 package com.example.demo.infrastructure.persistence.repositories;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -40,5 +42,10 @@ public class PessoaRepositoryImpl implements PessoaRepository{
     public void deleteById(UUID id){
         if (id == null) throw new IllegalArgumentException("Pessoa ID cannot be null");
         jpaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Pessoa> findAll(){
+        return jpaRepository.findAll().stream().map(mapper::toDomain).collect(Collectors.toList());
     }
 }

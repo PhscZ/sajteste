@@ -26,11 +26,15 @@ public class PessoaEntity {
     private String nome;
 
     @Column(name = "idade", nullable = false)
-    private int idade;
+    private Integer idade;
 
-    public PessoaEntity(UUID id, String nome, int idade) {
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    public PessoaEntity(UUID id, String nome, Integer idade, String email) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
+        this.email = email;
     }
 }
